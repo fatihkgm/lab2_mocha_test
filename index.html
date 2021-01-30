@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket News Application</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>Welcome to Socket news application</h1>
+    <h2 id="msg"></h2>
+    <div id="news-list"></div>
+
+
+<script>
+    var scoket = io('http://localhost:8088');
+
+    socket.io("welcome" ,(data)=>{
+        console.log(data);
+
+        var msgWelcome=document.getElementById("msg");
+        msgWelcome.innerHTML=data
+
+    }); 
+
+    socket.on("send-news" , (data)=>{
+
+        var w=document.getElementById("news-list");
+        for(var i = 0; i < data.length; i++) {
+
+            var newsItem = data[i];
+
+            div.innerHTML += "<h4>" + newsItem.title + ' <small>'+ newsItem.date + "</small></h4><br>";
+
+        }
+
+    });
+
+    
+</script>
+
+</body>
+</html>
